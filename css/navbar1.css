@@ -1,0 +1,146 @@
+/*
+	<nav>
+		<ul>
+			<li><a href="#">home</a></li>
+			<li><a href="#">about us</a></li>
+			<li class="dropdown"><a href="#">products</a>
+				<ul>
+					<li><a href="#">greens</a></li>
+					<li><a href="#">oranges</a></li>
+					<li><a href="#">reds</a></li>
+					<li><a href="#">whites</a></li>
+					<li><a href="#">browns</a></li>
+				</ul>
+			</li>
+			<li><a href="#">vitamins</a></li>
+			<li><a href="#">blog</a></li>
+			<li><a href="#">contact</a></li>
+		</ul>
+	</nav>
+*/
+
+
+/*--------------------NAVBAR----------------*/
+
+nav{
+	width: 100%;
+	height: 70px;
+	position: relative;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/*pentru toate listele din nav*/
+nav ul{
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*Selectam toate li din ul, dar cele care sunt direct precedenti si nu sunt drpdown*/
+nav > ul > li:not(.dropdown){
+	padding: 0 2em;
+	margin: 0 10px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+nav ul > li:not(.dropdown):after{
+	content: '';
+	height: 2px;
+	width: 100%;
+	background-color: var(--verde);
+	position: absolute;
+	left: -100%;
+	transition: all .2s ease-in-out;
+}
+nav ul > li:not(.dropdown):hover:after{
+	left: 100%;
+}
+/*Acelasi font si proprietati pntru toate a-urile din nav*/
+nav ul li a{
+	font-family: dosis;
+	color: var(--gri);
+	text-decoration: none;
+	font-size: 1em;
+	letter-spacing: 2px;
+	font-weight: 600;
+	text-shadow: none;
+}
+
+/*DROPDOWN*/
+.dropdown{
+	position: relative;
+	padding: 0 2em;
+	margin: 0 10px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*primul a, adica titlul dropdownului se face mai putin opac*/
+.dropdown:hover > a{
+	opacity: 0.8;
+}
+
+.dropdown:hover ul{
+	display: initial;
+}
+/*asta e defapt dropdownul*/
+.dropdown > ul{
+	position: absolute;
+	width: 150px;
+	top: 2.2em;
+	left: 1em;
+	background-color: var(--verde);
+	padding: 5px 0;
+	align-items: flex-start;
+	display: none;
+	flex-flow: column;
+	z-index: 2;
+	border-radius: 2px;
+}
+/*UN TRIUNGHI */
+.dropdown ul:before{
+	content: '';
+	position: absolute;
+	border-bottom: 15px solid var(--verde);
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-top: 15px solid transparent;
+	top: -30px;
+	left: 15px;
+}
+
+.dropdown > ul li{
+	padding: 0px 10% 10px;
+	align-items: flex-start;
+	width: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.dropdown > ul li:before{
+	content: '';
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	background-color: var(--gri);
+	/*border-radius: 50%;*/
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
+	left: 0;
+	top: 0;
+}
+.dropdown > ul li:hover:before{
+	opacity: 1;
+}
+
+.dropdown > ul li:after{
+	display: none;
+}
